@@ -1,0 +1,17 @@
+// Allows a prover to demonstrate beyond any reasonable  doubt to a verifier,
+// that the verifier knows a hash preimage for a given digest.
+
+// We want to pass 512 bits of input to SHA256. However, a field value can only
+// hold 254 bits due to the size of the underlying prime field we are using. 
+// As a consequence, we use four field elements, each one encoding 128 bits, 
+// to represent our input. The four elements are then concatenated in ZoKrates 
+// and passed to SHA256. Given that the resulting hash is 256 bit long, we split
+// it in two and return each value as a 128 bit number.
+
+import "hashes/sha256/512bitPacked" as sha256packed
+
+def main(private field a, private field b, private field c, private field d):
+    field[2] h = sha256packed([a, b, c, d])
+    assert(h[0] == 93271023223675188690748885523218456787)
+    assert(h[1] == 70206088715592339302620672182244965492)
+    return
