@@ -19,21 +19,14 @@ contract ProofVerifierKRS is KryptoRealState {
     struct Solution {
         bytes32 key;
         address prover;
-        bool redeemed;
+        bool redeemable;
+        bool exists;
     }
     // Array with all solutions, used for enumeration
     Solution[] private _solutions;
 
     // Mapping from solution key to the position in the solutions array
     mapping(bytes32 => uint256) private _solutionsIndex;
-
-    modifier onlyProver(bytes32 key) {
-        require(
-            _solution(key).prover == msg.sender,
-            "KryptoRealStateZKP: only the prover can mint a token"
-        );
-        _;
-    }
 
     event ProofVerified(bytes32 key, address indexed prover);
     event TokenMinted(address to, bytes32 key, uint256 tokenId);
@@ -72,10 +65,10 @@ contract ProofVerifierKRS is KryptoRealState {
 
         require(
             _isValidProof(a, b, c, input),
-            "KryptoRealStateZKP: solution proof is *not* valid for the input"
+            "KryptoRealStateZKP: solution proof is not valid for that input"
         );
 
-        _solutions.push(Solution(key, msg.sender, false));
+        _solutions.push(Solution(key, msg.sender, true, true));
         _solutionsIndex[key] = _solutions.length - 1;
 
         emit ProofVerified(key, msg.sender);
@@ -85,10 +78,20 @@ contract ProofVerifierKRS is KryptoRealState {
      * @dev Mints a new token if a prover has previously submitted a valid
      * proof of ownership.
      */
-    function mint(bytes32 key) external onlyProver(key) {
+    function mint(bytes32 key) external {
         require(
-            !(_solution(key).redeemed),
-            "KryptoRealStateZKP: solution has been used already"
+            _exists(key),
+            "KryptoRealStateZKP: solution key does not exist"
+        );
+
+        require(
+            _redeemable(key),
+            "KryptoRealStateZKP: solution key is not redeemable"
+        );
+
+        require(
+            _solution(key).prover == msg.sender,
+            "KryptoRealStateZKP: only the prover can mint a token"
         );
 
         _redeemSolution(key);
@@ -101,13 +104,27 @@ contract ProofVerifierKRS is KryptoRealState {
         return _solutions[index];
     }
 
+    function _redeemable(bytes32 key) internal view returns (bool) {
+        if (_solutions.length == 0) {
+            return false;
+        }
+
+        uint256 index = _solutionsIndex[key];
+        return _solutions[index].redeemable && _solutions[index].key == key;
+    }
+
     function _exists(bytes32 key) internal view returns (bool) {
-        return _solutionsIndex[key] == 0;
+        if (_solutions.length == 0) {
+            return false;
+        }
+
+        uint256 index = _solutionsIndex[key];
+        return _solutions[index].exists && _solutions[index].key == key;
     }
 
     function _redeemSolution(bytes32 key) internal {
         uint256 index = _solutionsIndex[key];
-        _solutions[index].redeemed = true;
+        _solutions[index].redeemable = false;
     }
 
     function _isValidProof(
