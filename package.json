@@ -1,7 +1,7 @@
 {
-  "name": "drizzle-box",
-  "version": "1.0.0",
-  "description": "",
+  "name": "dapp-real-state",
+  "version": "0.1.0",
+  "description": "Decentralized Real State Marketplace",
   "main": "truffle-config.js",
   "directories": {
     "test": "test"
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/dcarpintero/dapp-real-state"
   },
   "keywords": [],
   "author": "D. Carpintero",
-  "license": "ISC",
-  "homepage": "",
+  "license": "MIT",
+  "homepage": "https://github.com/dcarpintero/dapp-real-state",
   "dependencies": {},
   "devDependencies": {
     "@openzeppelin/contracts": "^3.1.0",
