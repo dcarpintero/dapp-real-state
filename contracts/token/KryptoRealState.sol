@@ -16,6 +16,7 @@ contract KryptoRealState is ERC721Metadata {
 
     function mint(address to, uint256 tokenId)
         public
+        virtual
         onlyOwner
         whenNotPaused
         returns (bool)

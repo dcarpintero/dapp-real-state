@@ -5,7 +5,15 @@ pragma solidity 0.6.2;
 import "./KryptoRealState.sol";
 import "../zokrates/code/square/verifier.sol";
 
-contract KryptoRealStateZKP is KryptoRealState {
+/**
+ * @dev Contract module to mint KryptoRealState tokens. Sellers are
+ * entitle to list their properties only upon presenting a valid
+ * proof of ownership based on zk-SNARKs.
+ *
+ * Tokens are implemented as in the ERC721 standard.
+ * see https://eips.ethereum.org/EIPS/eip-721
+ */
+contract ProofVerifierKRS is KryptoRealState {
     SquareVerifier private squareVerifier;
 
     struct Solution {
@@ -27,7 +35,7 @@ contract KryptoRealStateZKP is KryptoRealState {
         _;
     }
 
-    event SolutionAdded(bytes32 key, address indexed prover);
+    event ProofVerified(bytes32 key, address indexed prover);
     event TokenMinted(address to, bytes32 key, uint256 tokenId);
 
     constructor(address verifier) public KryptoRealState() {
@@ -35,9 +43,12 @@ contract KryptoRealStateZKP is KryptoRealState {
     }
 
     /**
-     * @dev Submit a candidate solution for verification.
+     * @dev Submit a candidate ownership-proof for validation.
+     *
+     * The proof consists on the points of the elliptic curve
+     * corresponding to the input.
      */
-    function submitSolution(
+    function submitOwnershipProof(
         uint256[2] calldata a,
         uint256[2][2] calldata b,
         uint256[2] calldata c,
@@ -67,13 +78,14 @@ contract KryptoRealStateZKP is KryptoRealState {
         _solutions.push(Solution(key, msg.sender, false));
         _solutionsIndex[key] = _solutions.length - 1;
 
-        emit SolutionAdded(key, msg.sender);
+        emit ProofVerified(key, msg.sender);
     }
 
     /**
-     * @dev Mints token.
+     * @dev Mints a new token if a prover has previously submitted a valid
+     * proof of ownership.
      */
-    function mintToken(bytes32 key) external onlyProver(key) {
+    function mint(bytes32 key) external onlyProver(key) {
         require(
             !(_solution(key).redeemed),
             "KryptoRealStateZKP: solution has been used already"

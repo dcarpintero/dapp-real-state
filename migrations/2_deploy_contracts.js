@@ -1,13 +1,14 @@
-//var SolnSquareVerifier = artifacts.require("./SolnSquareVerifier.sol");
-
 const KryptoRealState = artifacts.require("KryptoRealState");
 const SquareVerifier = artifacts.require("./SquareVerifier.sol");
 const PreimageVerifier = artifacts.require("./PreimageVerifier.sol");
+const ProofVerifierKRS = artifacts.require("./ProofVerifierKRS.sol");
 
 module.exports = function (deployer) {
-  deployer.deploy(KryptoRealState);
-  deployer.deploy(SquareVerifier);
-  deployer.deploy(PreimageVerifier);
+  deployer.then(async () => {
+    await deployer.deploy(KryptoRealState);
+    await deployer.deploy(SquareVerifier);
+    await deployer.deploy(SquareVerifier);
 
-  //deployer.deploy(SolnSquareVerifier);
+    await deployer.deploy(ProofVerifierKRS, SquareVerifier.address);
+  });
 };
