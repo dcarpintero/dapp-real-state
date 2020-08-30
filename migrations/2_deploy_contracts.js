@@ -7,7 +7,7 @@ module.exports = function (deployer) {
   deployer.then(async () => {
     await deployer.deploy(KryptoRealState);
     await deployer.deploy(SquareVerifier);
-    await deployer.deploy(SquareVerifier);
+    await deployer.deploy(PreimageVerifier);
 
     await deployer.deploy(ProofVerifierKRS, SquareVerifier.address);
   });
