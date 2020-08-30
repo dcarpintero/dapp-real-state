@@ -692,7 +692,7 @@ library Pairing {
     }
 }
 
-contract SquareVerifier {
+contract PreimageVerifier {
     using Pairing for *;
     struct VerifyingKey {
         Pairing.G1Point alpha;
@@ -770,29 +770,13 @@ contract SquareVerifier {
                 )
             ]
         );
-        vk.gamma_abc = new Pairing.G1Point[](3);
+        vk.gamma_abc = new Pairing.G1Point[](1);
         vk.gamma_abc[0] = Pairing.G1Point(
             uint256(
-                0x1ef8d5d70234aa3e3d8fc4e3f1ca01c703182580b581106798f05b35fd5082c0
+                0x16c66adc84071d483e3c7d4679444582dadcf3f4fad5456fd2fd3a41a4ee01b9
             ),
             uint256(
-                0x2e468046d4ae35138e2032224925d5389712e5ca5e68f4d9c1e1858e7d65602d
-            )
-        );
-        vk.gamma_abc[1] = Pairing.G1Point(
-            uint256(
-                0x0cefae0e3fa6aa25a4485ab7b21d32794d3431a4e4a5ca82ea427b831534c2c9
-            ),
-            uint256(
-                0x23e3d2035b70884e547638b111870f5957f58ad8068f7a21470164ad361e1e88
-            )
-        );
-        vk.gamma_abc[2] = Pairing.G1Point(
-            uint256(
-                0x030ffe78ec3de150e8688db619bde78e21e894754e6be5ed83742677628b24bc
-            ),
-            uint256(
-                0x053392f88cfa9092dfbc0bd199d8159e56207779473c24fc601eff91bcd345ca
+                0x1a909ea6875b2b42445932f7e3a5f6ae79323f33852549af1055b2e64957741b
             )
         );
     }
@@ -835,18 +819,14 @@ contract SquareVerifier {
     function verifyTx(
         uint256[2] memory a,
         uint256[2][2] memory b,
-        uint256[2] memory c,
-        uint256[2] memory input
+        uint256[2] memory c
     ) public view returns (bool r) {
         Proof memory proof;
         proof.a = Pairing.G1Point(a[0], a[1]);
         proof.b = Pairing.G2Point([b[0][0], b[0][1]], [b[1][0], b[1][1]]);
         proof.c = Pairing.G1Point(c[0], c[1]);
-        uint256[] memory inputValues = new uint256[](2);
+        uint256[] memory inputValues = new uint256[](0);
 
-        for (uint256 i = 0; i < input.length; i++) {
-            inputValues[i] = input[i];
-        }
         if (verify(inputValues, proof) == 0) {
             return true;
         } else {
