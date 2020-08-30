@@ -1,8 +1,10 @@
 const Verifier = artifacts.require("ProofVerifierKRS");
 const square = require("../contracts/zokrates/code/square/proof.json");
-const assert = require("chai").assert;
+const truffleAssert = require("truffle-assertions");
 
 contract("ProofVerifierKRS", (accounts) => {
+  let proofKey;
+
   before(async () => {
     verifier = await Verifier.deployed();
   });
@@ -16,17 +18,33 @@ contract("ProofVerifierKRS", (accounts) => {
     );
 
     truffleAssert.eventEmitted(tx, "ProofVerified", (ev) => {
-      console.log(ev);
+      console.log("\tProofVerified");
+      console.log("\t\tkey:" + ev.key);
+      console.log("\t\tprover:" + ev.prover);
+
+      proofKey = ev.key; // workaround to get the proof key
+
       return ev;
     });
   });
 
   it("should mint KRS token", async () => {
-    let tx = await verifier.mint(key);
+    let tx = await verifier.mint(proofKey);
 
     truffleAssert.eventEmitted(tx, "TokenMinted", (ev) => {
-      console.log(ev);
-      return ev;
+      console.log("\tTokenMinted");
+      console.log("\t\tto:" + ev.to);
+      console.log("\t\tkey:" + ev.key);
+      console.log("\t\ttokenId:" + ev.tokenId);
+
+      return ev.key === proofKey;
     });
+  });
+
+  it("should *not* mint KRS token from invalid key", async () => {
+    await truffleAssert.reverts(
+      verifier.mint("0xffffff"),
+      "KryptoRealStateZKP: solution key does not exist"
+    );
   });
 });

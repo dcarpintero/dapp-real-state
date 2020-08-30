@@ -106,26 +106,4 @@ contract("KryptoRealState", (accounts) => {
       });
     });
   });
-
-  describe("Pausable", function () {
-    describe("operational status", function () {
-      xit("should pause and resume contract", async function () {
-        await token.pause({ from: contractOwner });
-        assert.isTrue(token.isPaused());
-
-        await token.resume({ from: contractOwner });
-        assert.isFalse(await token.isPaused());
-      });
-
-      xit("should reject mint operation if paused", async function () {
-        await token.pause();
-        await truffleAssert.reverts(
-          token.mint(contractOwner, 111, {
-            from: contractOwner,
-          }),
-          "Pausable: expected 'not paused' status"
-        );
-      });
-    });
-  });
 });
