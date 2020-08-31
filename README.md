@@ -1,5 +1,9 @@
 # Decentralized Real State Marketplace
 
+<p align="center">
+  <img src="/app/src/logo.jpg">
+</p>
+
 ## Project Description
 
 - Decentralized application that provides a [digital marketplace](https://rinkeby.opensea.io/storefront/kryptorealstate) for real-state properties.
@@ -125,3 +129,7 @@ truffle migrate --reset --network=rinkeby
 - [The Knowledge Complexity of Interactive Proof Systems, Goldwasser et al. 1985](http://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Proof%20Systems/The_Knowledge_Complexity_Of_Interactive_Proof_Systems.pdf)
 - [Building Identity-linked zkSNARKs with ZoKrates, Eberhardt 2019](https://medium.com/zokrates/building-identity-linked-zksnarks-with-zokrates-a36085cdd40)
 - [zkSNARKs in a nutshell, C. Reitwiessner 2016](https://blog.ethereum.org/2016/12/05/zksnarks-in-a-nutshell/)
+
+## Credits
+
+- Storefront and listed property images have been designed using resources from Freepik.com.
