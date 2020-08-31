@@ -1,5 +1,5 @@
 const Verifier = artifacts.require("ProofVerifierKRS");
-const square = require("../contracts/zokrates/code/square/proof.json");
+const square = require("../contracts/zokrates/code/square/proofs/proof_1.json");
 const truffleAssert = require("truffle-assertions");
 
 contract("ProofVerifierKRS", (accounts) => {

@@ -1,6 +1,7 @@
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const fs = require("fs");
 const mnemonic = fs.readFileSync(".secret").toString().trim();
+const infuraKey = fs.readFileSync(".infura_key").toString().trim();
 const path = require("path");
 
 module.exports = {
@@ -19,6 +20,19 @@ module.exports = {
         );
       },
       network_id: "*",
+    },
+    rinkeby: {
+      provider: () =>
+        new HDWalletProvider(
+          mnemonic,
+          `https://rinkeby.infura.io/v3/${infuraKey}`
+        ),
+      network_id: 4, // rinkeby's id
+      gas: 4500000, // rinkeby has a lower block limit than mainnet
+      gasPrice: 10000000000,
+    },
+    develop: {
+      port: 8545,
     },
   },
   // Set default mocha options here, use special reporters etc.
