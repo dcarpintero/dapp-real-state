@@ -104,15 +104,12 @@ truffle migrate --reset --network=rinkeby
 
 [link]
 
-### Rinkeby Contract Addresses and ABI
-
-### Smart Contract
+### Rinkeby Contract Addresses
 
 ## ProofVerifierKRS.sol
 
 - Deployment TX: [0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487](https://rinkeby.etherscan.io/tx/0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487)
 - Contract Address: [0x45ba1aBB6D689347888A199986FDC89aEd19eC00](https://rinkeby.etherscan.io/address/0x45ba1aBB6D689347888A199986FDC89aEd19eC00)
-- ABI:
 
 ## SquareVerifier.sol
 
