@@ -2,27 +2,47 @@
 
 ## Project Description
 
-Decentralized application [...].
+- Decentralized application that provides a [digital marketplace](link) for real-state properties.
 
 ### ERC721 Token
 
-[...]
+- Non-fungible tokens are implemented as in the [ERC721 standard](https://eips.ethereum.org/EIPS/eip-721).
 
-### Zero Knowledge Proofs
+### Minting and Zero Knowledge Proofs (ZKPs)
 
-[...]
+- In order to mint a new real-state token, a party (the prover) is required to prove to another (the verifier) knowledge of a secret. The application relies on a zero-knowledge Succinct Non-interactive ARguments of Knowledge (ZK-SNARK) scheme, which allows a prover to demonstrate beyond any reasonable doubt to a verifier, that the prover meets said requirement and knows a secret, without revealing what the secret is. As a non-interactive construction, the proof consists of a single message sent from the prover to the verifier.
+
+#### Generating ZKPs
+
+- A naive proof-of-concept implementation in form of square knowledge is provided, whereas a more realistic proof-of-preimage scheme has also been implemented for proving preimage knowledge of a given hash digest, without revealing what the preimage is.
+
+- ZK-SNARKs consist of three algorithms G, P, V. In a trusted off-chain setup phase, the key generator G takes a secret parameter lambda and a [program C](link) in order to generate two publicly available keys, namely a proving key pk and a verification key vk. These keys are public parameters that only need to be generated once for a given [program C](link). 
+
+- Compilation of [program C](link) into an [aritmetic circuit](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649), and generation of the proving and verification key from the resulting aritmetic circuit has been carried out by [ZoKrates](https://github.com/Zokrates/ZoKrates).
+
+- As a next step, the prover P takes as input the proving key pk, a public input x and a private witness w. The algorithm generates a proof prf = P(pk, x, w) that the prover knows a witness w and that the witness satisfies the program.
+
+-  Each resulting [proof](https://github.com/dcarpintero) consists of the three elliptic curve points that make up the zkSNARKs proof.
+
+- The verifyTx function in the [SquareVerifier]() contract accepts these three values, along with an array of public inputs. The [SquareVerifier]() further computes V(vk, x, prf) which returns true if the proof is correct, and allows to infer that the prover knows a witness w satisfying C(x,w) == true.
+
+- Zero-knowledge proofs (ZKPs) are a family of probabilistic protocols, first described by [Goldwasser, Micali and Rackoff](http://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Proof%20Systems/The_Knowledge_Complexity_Of_Interactive_Proof_Systems.pdf) in 1985.
+
 
 ### Unit and system tests
 
 - TestKryptoRealState.js
+- TestPausable.js
 - TestPreimageVerifier.js
 - TestSquareVerifier.js
+- TestProofVerifier.js
 
 ### Dependencies
 
 - Solidity v0.6.2 (solc-js)
 - Node v12.17.0
 - Web3.js v1.2.1
+- Zokrates v0.6.1
 
 - Truffle v5.1.30 (core: 5.1.30) - Development framework
 - @truffle/hdwallet-provider v1.0.36 - HD Wallet-enabled Web3 provider
@@ -57,3 +77,19 @@ truffle compile
 truffle test
 truffle migrate --reset
 ```
+
+## OpenSea Marketplace
+
+[link]
+
+## Rinkeby Contract Addresses and ABI
+
+## OpenSea MarketPlace Storefront
+
+## Transaction History
+
+## About Zero Knowledge Proofs (ZKPs)
+
+- [The Knowledge Complexity of Interactive Proof Systems, Goldwasser et al. 1985](http://people.csail.mit.edu/silvio/Selected%20Scientific%20Papers/Proof%20Systems/The_Knowledge_Complexity_Of_Interactive_Proof_Systems.pdf)
+- [Building Identity-linked zkSNARKs with ZoKrates, Eberhardt 2019](https://medium.com/zokrates/building-identity-linked-zksnarks-with-zokrates-a36085cdd40)
+- [zkSNARKs in a nutshell, C. Reitwiessner 2016](https://blog.ethereum.org/2016/12/05/zksnarks-in-a-nutshell/)
