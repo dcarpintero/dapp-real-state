@@ -34,13 +34,13 @@ zokrates setup
 - As a next step, the prover P takes as input the proving key pk, a public input x and a private witness w. The algorithm generates a proof prf = P(pk, x, w) that the prover knows a witness w and that the witness satisfies the program.
 
 ```
-zokrates compute-witness -a <a> <b>
+zokrates compute-witness -a <x> <w> --output witness
 ```
 
 - Each resulting proof consists of the three elliptic curve points that make up the zkSNARKs proof.
 
 ```
-zokrates generate-proof
+zokrates generate-proof -w witness -j proof
 ```
 
 - The verifyTx function in the contract accepts these three values, along with an array of public inputs. The contract further computes V(vk, x, prf) which returns true if the proof is correct, and allows to infer that the prover knows a witness w satisfying C(x,w) == true.
