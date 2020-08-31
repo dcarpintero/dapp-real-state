@@ -2,7 +2,7 @@
 
 ## Project Description
 
-- Decentralized application that provides a [digital marketplace](link) for real-state properties.
+- Decentralized application that provides a [digital marketplace](https://rinkeby.opensea.io/storefront/kryptorealstate) for real-state properties.
 
 ### Asset Tokenization (ERC721)
 
@@ -102,7 +102,7 @@ truffle migrate --reset --network=rinkeby
 
 ### OpenSea Marketplace
 
-[link]
+- https://rinkeby.opensea.io/storefront/kryptorealstate
 
 ### Rinkeby Contract Addresses
 
