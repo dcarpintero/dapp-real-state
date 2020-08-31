@@ -22,11 +22,28 @@
 
 - Compilation of program C into an [aritmetic circuit](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649), and generation of the proving and verification key from the resulting aritmetic circuit has been carried out by [ZoKrates](https://github.com/Zokrates/ZoKrates).
 
+```
+zokrates compile -i preimage.zok
+zokrates setup
+```
+
 - As a next step, the prover P takes as input the proving key pk, a public input x and a private witness w. The algorithm generates a proof prf = P(pk, x, w) that the prover knows a witness w and that the witness satisfies the program.
+
+```
+zokrates compute-witness -a <a> <b>
+```
 
 - Each resulting proof consists of the three elliptic curve points that make up the zkSNARKs proof.
 
+```
+zokrates generate-proof
+```
+
 - The verifyTx function in the contract accepts these three values, along with an array of public inputs. The contract further computes V(vk, x, prf) which returns true if the proof is correct, and allows to infer that the prover knows a witness w satisfying C(x,w) == true.
+
+```
+zokrates export-verifier
+```
 
 ### Unit and system tests
 
@@ -93,14 +110,14 @@ truffle migrate --reset --network=rinkeby
 
 ## ProofVerifierKRS.sol
 
-- Deployment TX: [0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487] (https://rinkeby.etherscan.io/tx/0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487)
-- Contract Address: [0x45ba1aBB6D689347888A199986FDC89aEd19eC00] (https://rinkeby.etherscan.io/address/0x45ba1aBB6D689347888A199986FDC89aEd19eC00)
+- Deployment TX: [0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487](https://rinkeby.etherscan.io/tx/0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487)
+- Contract Address: [0x45ba1aBB6D689347888A199986FDC89aEd19eC00](https://rinkeby.etherscan.io/address/0x45ba1aBB6D689347888A199986FDC89aEd19eC00)
 - ABI:
 
 ## SquareVerifier.sol
 
-- Deployment TX: [0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac] (https://rinkeby.etherscan.io/tx/0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac)
-- Contract Address: [0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05] (https://rinkeby.etherscan.io/address/0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05)
+- Deployment TX: [0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac](https://rinkeby.etherscan.io/tx/0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac)
+- Contract Address: [0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05](https://rinkeby.etherscan.io/address/0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05)
 
 ## OpenSea MarketPlace Storefront
 
