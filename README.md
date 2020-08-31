@@ -16,11 +16,11 @@
 
 #### Generating ZKPs
 
-- A naive proof-of-concept implementation in form of square knowledge is provided, whereas a more realistic proof-of-preimage scheme has also been implemented for proving preimage knowledge of a given hash digest, without revealing what the preimage is.
+- A naive proof-of-concept implementation in form of [square](https://github.com/dcarpintero/dapp-real-state/blob/master/contracts/zokrates/code/square/square.zok) knowledge is provided, whereas a more realistic [proof-of-preimage](https://github.com/dcarpintero/dapp-real-state/blob/master/contracts/zokrates/code/preimage/preimage.zok) scheme has also been implemented for proving preimage knowledge of a given hash digest, without revealing what the preimage is.
 
 - ZK-SNARKs consist of three algorithms G, P, V. In a trusted off-chain setup phase, the key generator G takes a secret parameter lambda and a [program C](https://github.com/dcarpintero/dapp-real-state/blob/master/contracts/zokrates/code/preimage/preimage.zok) in order to generate two publicly available keys, namely a proving key pk and a verification key vk. These keys are public parameters that only need to be generated once for a given program C.
 
-- Compilation of [program C](https://github.com/dcarpintero/dapp-real-state/blob/master/contracts/zokrates/code/preimage/preimage.zok) into an [aritmetic circuit](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649), and generation of the proving and verification key from the resulting aritmetic circuit has been carried out by [ZoKrates](https://github.com/Zokrates/ZoKrates).
+- Compilation of program C into an [aritmetic circuit](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649), and generation of the proving and verification key from the resulting aritmetic circuit has been carried out by [ZoKrates](https://github.com/Zokrates/ZoKrates).
 
 - As a next step, the prover P takes as input the proving key pk, a public input x and a private witness w. The algorithm generates a proof prf = P(pk, x, w) that the prover knows a witness w and that the witness satisfies the program.
 
@@ -93,14 +93,14 @@ truffle migrate --reset --network=rinkeby
 
 ## ProofVerifierKRS.sol
 
-- Deployment TX: https://rinkeby.etherscan.io/tx/0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487
-- Contract Address: https://rinkeby.etherscan.io/address/0x45ba1aBB6D689347888A199986FDC89aEd19eC00
+- Deployment TX: [0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487] (https://rinkeby.etherscan.io/tx/0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487)
+- Contract Address: [0x45ba1aBB6D689347888A199986FDC89aEd19eC00] (https://rinkeby.etherscan.io/address/0x45ba1aBB6D689347888A199986FDC89aEd19eC00)
 - ABI:
 
 ## SquareVerifier.sol
 
-- Deployment TX on the Rinkeby Network: https://rinkeby.etherscan.io/tx/0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac
-- Contract Address on the Rinkeby Network: https://rinkeby.etherscan.io/address/0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05
+- Deployment TX: [0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac] (https://rinkeby.etherscan.io/tx/0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac)
+- Contract Address: [0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05] (https://rinkeby.etherscan.io/address/0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05)
 
 ## OpenSea MarketPlace Storefront
 
