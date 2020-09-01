@@ -10,4 +10,6 @@ install:
   - npm install
 
 script:
+  - echo "$secret" > .secret
+  - echo "$infura_key" > .infura_key
   - truffle compile
