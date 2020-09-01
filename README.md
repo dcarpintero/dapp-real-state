@@ -118,11 +118,13 @@ truffle migrate --reset --network=rinkeby
 
 - Deployment TX: [0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487](https://rinkeby.etherscan.io/tx/0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487)
 - Contract Address: [0x45ba1aBB6D689347888A199986FDC89aEd19eC00](https://rinkeby.etherscan.io/address/0x45ba1aBB6D689347888A199986FDC89aEd19eC00)
+- [ABI](/abis/ProofVerifierKRS.json)
 
 ### SquareVerifier.sol
 
 - Deployment TX: [0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac](https://rinkeby.etherscan.io/tx/0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac)
 - Contract Address: [0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05](https://rinkeby.etherscan.io/address/0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05)
+- [ABI](/abis/SquareVerifier.json)
 
 ## OpenSea MarketPlace
 
