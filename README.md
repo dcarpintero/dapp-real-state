@@ -8,6 +8,9 @@
 
 - Decentralized [digital marketplace](https://rinkeby.opensea.io/storefront/kryptorealstate) for real-state properties.
 
+[![Build Status](https://travis-ci.com/dcarpintero/dapp-real-state.svg?branch=master)](https://travis-ci.com/github/dcarpintero/dapp-real-state)
+[![License](https://img.shields.io/github/license/dcarpintero/dapp-real-state)](https://github.com/dcarpintero/dapp-real-state/blob/master/LICENSE)
+
 ### Asset Tokenization (ERC721)
 
 - Real-state assets are represented as non-fungible tokens, and implement the [ERC721 standard](https://eips.ethereum.org/EIPS/eip-721).
