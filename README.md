@@ -6,11 +6,11 @@
 
 ## Project Description
 
-- Decentralized application that provides a [digital marketplace](https://rinkeby.opensea.io/storefront/kryptorealstate) for real-state properties.
+- Decentralized [digital marketplace](https://rinkeby.opensea.io/storefront/kryptorealstate) for real-state properties.
 
 ### Asset Tokenization (ERC721)
 
-- Real-state assets are represented as non-fungible tokens and implement the [ERC721 standard](https://eips.ethereum.org/EIPS/eip-721).
+- Real-state assets are represented as non-fungible tokens, and implement the [ERC721 standard](https://eips.ethereum.org/EIPS/eip-721).
 
 ### Minting and Zero Knowledge Proofs (ZKPs)
 
@@ -22,22 +22,22 @@
 
 - A naive proof-of-concept implementation in form of [square](https://github.com/dcarpintero/dapp-real-state/blob/master/contracts/zokrates/code/square/square.zok) knowledge is provided, whereas a more realistic [proof-of-preimage](https://github.com/dcarpintero/dapp-real-state/blob/master/contracts/zokrates/code/preimage/preimage.zok) scheme has also been implemented for proving preimage knowledge of a given hash digest, without revealing what the preimage is.
 
-- ZK-SNARKs consist of three algorithms G, P, V. In a trusted off-chain setup phase, the key generator G takes a secret parameter lambda and a [program C](https://github.com/dcarpintero/dapp-real-state/blob/master/contracts/zokrates/code/preimage/preimage.zok) in order to generate two publicly available keys, namely a proving key pk and a verification key vk. These keys are public parameters that only need to be generated once for a given program C.
+- ZK-SNARKs consist of three algorithms G, P, V. In a trusted off-chain setup phase, the key generator G takes a secret parameter lambda and a program C in order to generate two publicly available keys, namely a proving key pk and a verification key vk. These keys are public parameters that only need to be generated once for a given program C.
 
-- Compilation of program C into an [aritmetic circuit](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649), and generation of the proving and verification key from the resulting aritmetic circuit has been carried out by [ZoKrates](https://github.com/Zokrates/ZoKrates).
+- Compilation of program C into an [aritmetic circuit](https://medium.com/@VitalikButerin/quadratic-arithmetic-programs-from-zero-to-hero-f6d558cea649), and generation of the proving and verification key from the resulting aritmetic circuit has been carried out by [ZoKrates](https://github.com/Zokrates/ZoKrates):
 
 ```
-zokrates compile -i preimage.zok
+zokrates compile -i square.zok
 zokrates setup
 ```
 
-- As a next step, the prover P takes as input the proving key pk, a public input x and a private witness w. The algorithm generates a proof prf = P(pk, x, w) that the prover knows a witness w and that the witness satisfies the program.
+- As a next step, the prover P takes as input the proving key pk, a public input x and a private witness w. The algorithm generates a proof prf = P(pk, x, w) that the prover knows a witness w and that the witness satisfies the program condition(s):
 
 ```
 zokrates compute-witness -a <x> <w> -output witness
 ```
 
-- Each resulting proof consists of the three elliptic curve points that make up the zkSNARKs proof.
+- Each resulting proof consists of the three elliptic curve points that make up the zkSNARKs proof:
 
 ```
 zokrates generate-proof -w witness -j proof
