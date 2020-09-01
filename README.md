@@ -1,7 +1,7 @@
 # Decentralized Real State Marketplace
 
 <p align="center">
-  <img src="/app/src/logo.jpg">
+  <img src="/doc/logo.jpg">
 </p>
 
 ## Project Description
