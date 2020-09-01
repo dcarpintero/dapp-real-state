@@ -3,4 +3,3 @@ build
 app/src/contracts
 .DS_Store
 .secret
-.infura_key
