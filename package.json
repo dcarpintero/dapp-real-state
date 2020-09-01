@@ -7,7 +7,6 @@
     "test": "test"
   },
   "scripts": {
-    "compile": "truffle compile",
     "test": "truffle test"
   },
   "repository": {
