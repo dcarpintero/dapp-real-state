@@ -84,10 +84,11 @@ Install dependencies
 npm install
 ```
 
-Define mnemonic in .secret file
+Create infura_key file, and define mnemonic in .secret file
 
 ```
 .secret
+.infura_key
 truffle-config.js
 ```
 
