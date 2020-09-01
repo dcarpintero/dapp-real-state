@@ -60,6 +60,10 @@ zokrates export-verifier
 - TestSquareVerifier.js
 - TestProofVerifier.js
 
+### Continuous Integration (TravisCI)
+
+- .travis.yml
+
 ### Dependencies
 
 - Solidity v0.6.2 (solc-js)
