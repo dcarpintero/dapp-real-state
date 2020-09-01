@@ -1,6 +1,4 @@
 const KryptoRealState = artifacts.require("KryptoRealState");
-const assert = require("chai").assert;
-const expect = require("chai").expect;
 const truffleAssert = require("truffle-assertions");
 
 contract("Pausable", (accounts) => {

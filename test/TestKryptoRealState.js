@@ -1,7 +1,6 @@
 const KryptoRealState = artifacts.require("KryptoRealState");
-const assert = require("chai").assert;
-const expect = require("chai").expect;
 const truffleAssert = require("truffle-assertions");
+const assert = require("chai").assert;
 
 contract("KryptoRealState", (accounts) => {
   const tokenIDs = [00, 11, 22, 33, 44, 55, 66, 77, 88, 99];
@@ -9,7 +8,6 @@ contract("KryptoRealState", (accounts) => {
   const nonContractOwner = accounts[9];
   const from = accounts[1];
   const to = accounts[2];
-  const tokenOwner = accounts[3];
 
   const TOKEN_NAME = "KryptoRealState";
   const TOKEN_SYMBOL = "KRS";
@@ -35,23 +33,24 @@ contract("KryptoRealState", (accounts) => {
   describe("ERC721 specification", function () {
     describe("metadata", function () {
       it("has contract owner", async function () {
-        expect(await token.owner()).to.be.equal(contractOwner);
+        assert.equal(await token.owner(), contractOwner);
       });
 
       it("has name", async function () {
-        expect(await token.name()).to.be.equal(TOKEN_NAME);
+        assert.equal(await token.name(), TOKEN_NAME);
       });
 
       it("has token symbol", async function () {
-        expect(await token.symbol()).to.be.equal(TOKEN_SYMBOL);
+        assert.equal(await token.symbol(), TOKEN_SYMBOL);
       });
 
       it("has token base URI", async function () {
-        expect(await token.baseURI()).to.be.equal(TOKEN_BASE_URI);
+        assert.equal(await token.baseURI(), TOKEN_BASE_URI);
       });
 
       it("has token URI", async function () {
-        expect(await token.tokenURI(tokenIDs[1])).to.be.equal(
+        assert.equal(
+          await token.tokenURI(tokenIDs[1]),
           TOKEN_BASE_URI + tokenIDs[1]
         );
       });
