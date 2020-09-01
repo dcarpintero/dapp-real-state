@@ -10,7 +10,7 @@
 
 ### Asset Tokenization (ERC721)
 
-- Real-state assets are represented as non-fungible tokens, implemented as in the [ERC721 standard](https://eips.ethereum.org/EIPS/eip-721).
+- Real-state assets are represented as non-fungible tokens and implement the [ERC721 standard](https://eips.ethereum.org/EIPS/eip-721).
 
 ### Minting and Zero Knowledge Proofs (ZKPs)
 
@@ -104,25 +104,22 @@ Deployment to Rinkeby
 truffle migrate --reset --network=rinkeby
 ```
 
-### OpenSea Marketplace
+## Rinkeby Contract Addresses
 
-- https://rinkeby.opensea.io/storefront/kryptorealstate
-
-### Rinkeby Contract Addresses
-
-## ProofVerifierKRS.sol
+### ProofVerifierKRS.sol
 
 - Deployment TX: [0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487](https://rinkeby.etherscan.io/tx/0x9c7f76f30e27c52511a7d49953533c28369b91ef7a6f8bfc1fd7300937aba487)
 - Contract Address: [0x45ba1aBB6D689347888A199986FDC89aEd19eC00](https://rinkeby.etherscan.io/address/0x45ba1aBB6D689347888A199986FDC89aEd19eC00)
 
-## SquareVerifier.sol
+### SquareVerifier.sol
 
 - Deployment TX: [0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac](https://rinkeby.etherscan.io/tx/0x44ebf1fd04004b737949dc1f0b5982ab73f2a553f25563420a45e84ab66c0eac)
 - Contract Address: [0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05](https://rinkeby.etherscan.io/address/0xf1eBb6ED9482d2086bd55f8c227cF1f06655ea05)
 
-## OpenSea MarketPlace Storefront
+## OpenSea MarketPlace
 
-## Transaction History
+- [Storefront](https://rinkeby.opensea.io/storefront/kryptorealstate)
+- [KRS Token TXs](https://rinkeby.etherscan.io/token/0x45ba1abb6d689347888a199986fdc89aed19ec00)
 
 ## About Zero Knowledge Proofs (ZKPs)
 
@@ -132,4 +129,4 @@ truffle migrate --reset --network=rinkeby
 
 ## Credits
 
-- Storefront and listed property images have been designed using resources from Freepik.com.
+- Storefront image has been designed using resources from Freepik.com.
